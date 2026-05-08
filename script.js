@@ -551,3 +551,61 @@ console.log(`Масив students відсортований за оцінкою 
 const sortedByName = [...students];
 sortedByName.sort((a, b) => a.name.localeCompare(b.name));
 console.log(`Масив students відсортований в алфавітному порядку = ${JSON.stringify(sortedByName)}`);
+
+//=====Завдання 7. Рядки=====
+// 1. capitalize(str) — робить першу літеру рядка великою, решту малими
+
+function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+}
+
+console.log(`Виконання функції capitalize з аргументом javascript = ${capitalize("javascript")}`);
+console.log(`Виконання функції capitalize з аргументом hello world = ${capitalize("hello world")}`);
+console.log(`Виконання функції capitalize з аргументом HTML = ${capitalize("HTML")}`);
+
+// 2. countWords(str) — підраховує кількість слів у рядку (слова розділені пробілами)
+function checkBlanks(word) {
+    return word !== "";
+}
+
+function countWords(str) {
+    return str
+        .trim()
+        .split(" ")
+        .filter(checkBlanks)
+        .length;
+}
+
+console.log(`Виконання функції countWords з аргументом JavaScript це круто = ${countWords("JavaScript це круто")}`);
+console.log(`Виконання функції countWords з аргументом JavaScript    це   круто = ${countWords("JavaScript    це   круто")}`);
+
+// 3. truncate(str, maxLength) — обрізає рядок до вказаної довжини та додає "..." , якщо рядок довший
+
+function truncate(str, maxLength) {
+    if (str.length > maxLength) {
+    return str.slice(0, maxLength) + "...";
+    }
+  
+    return str;
+}
+
+console.log(`Виконання функції truncate з аргументами Це довгий текст для прикладу, 15 = ${truncate("Це довгий текст для прикладу", 15)}`);
+console.log(`Виконання функції truncate з аргументами Короткий, 20 = ${truncate("Короткий", 20)}`);
+
+// 4. isValidEmail(email) — перевіряє, чи рядок схожий на email-адресу. Використайте методи includes() та indexOf() (без регулярних виразів).
+
+function isValidEmail(email) {
+    const atIndex = email.indexOf("@");
+    const dotIndex = email.lastIndexOf(".");
+
+    if (email.includes("@") && atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length - 1) {
+        return true;
+    }
+
+    return false;
+}
+
+console.log(`Виконання функції isValidEmail з аргументом user@example.com = ${isValidEmail("user@example.com")}`);
+console.log(`Виконання функції isValidEmail з аргументом invalid-email = ${isValidEmail("invalid-email")}`);
+console.log(`Виконання функції isValidEmail з аргументом @example.com = ${isValidEmail("@example.com")}`);
+console.log(`Виконання функції isValidEmail з аргументом user@.com = ${isValidEmail("user@.com")}`);
