@@ -183,3 +183,96 @@ function isPositive(num) {
 
 console.log(`Результат виконання функції isPositive з аргументом 1 = ${isPositive(1)}`);
 console.log(`Результат виконання функції isPositive з аргументом -1 = ${isPositive(-1)}`);
+
+//=====Завдання 3. Масиви=====
+// 1. Створіть масив students , який містить мінімум 6 обʼєктів
+
+const students = [
+    {
+        name: "Олена Коваленко",
+        grade: 87,
+        courses: ["JavaScript", "HTML", "CSS"]
+    },
+    {
+        name: "Іван Іванов",
+        grade: 65,
+        courses: ["JavaScript", "HTML", "CSS", "React"]
+    },
+    {
+        name: "Василь Петренко",
+        grade: 23,
+        courses: ["JavaScript", "HTML", "CSS", "Node", "ExpressJS"]
+    },
+    {
+        name: "Інна Іваненко",
+        grade: 99,
+        courses: ["C", "STM32", "AVR"]
+    },
+    {
+        name: "Семен Семенов",
+        grade: 93,
+        courses: ["JavaScript", "HTML", "CSS", "Go"]
+    },
+    {
+        name: "Галина Шевченко",
+        grade: 76,
+        courses: ["JavaScript", "HTML", "CSS", "Figma"]
+    }
+];
+
+console.log(`Масив до модифікацій = ${JSON.stringify(students)}`);
+
+// 2. Продемонструйте методи модифікації масиву
+
+students.push(
+    {
+        name: "Сергій Сергєєв",
+        grade: 51,
+        courses: ["JavaScript", "HTML", "CSS", "Figma", "VueJS"]
+    }
+);
+console.log(`Масив піся операції push = ${JSON.stringify(students)}`);
+
+students.pop();
+console.log(`Масив піся операції pop = ${JSON.stringify(students)}`);
+
+students.splice(3, 1);
+console.log(`Масив піся видалення студенту з середини масиву = ${JSON.stringify(students)}`);
+
+students.splice(
+    3, 
+    0,     
+    {
+        name: "Сергій Сергєєв",
+        grade: 51,
+        courses: ["JavaScript", "HTML", "CSS", "Figma", "VueJS"]
+    }
+);
+console.log(`Масив піся додавання студенту в середину масиву = ${JSON.stringify(students)}`);
+
+// 3. Знайдіть першого студента з оцінкою вище 90 за допомогою find .
+
+function checkGrade(student) {
+    return student.grade > 90;
+}
+
+const studentOver90 = students.find(checkGrade);
+console.log(`Студент з оцінкою вище за 90 = ${JSON.stringify(studentOver90)}`);
+
+// 4. Відфільтруйте всіх студентів, які вивчають курс "JavaScript" , за допомогою filter .
+
+function checkCourses(student) {
+    return student.courses.indexOf("JavaScript") > -1;
+}
+
+const studentStudyingJS = students.filter(checkCourses);
+console.log(`Студенти, що вивчають JavaScript = ${JSON.stringify(studentStudyingJS)}`);
+
+// 5. Обчисліть середню оцінку всіх студентів за допомогою reduce .
+
+function calculateAverage(average, student) {
+    return average + student.grade / students.length;
+}
+
+const averageGrade = students.reduce(calculateAverage, 0);
+console.log(`Середня оцінка = ${averageGrade}`);
