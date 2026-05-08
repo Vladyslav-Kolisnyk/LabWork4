@@ -423,3 +423,131 @@ console.log(`Змінена копія об'єкту = ${JSON.stringify(studentP
 // Продемонструйте optional chaining ( ?. )
 
 console.log(`Демонстрація доступу до неіснуючої властивості з допомогою optional chaining studentProfile.specialty?.number = ${studentProfile.specialty?.number ?? "Не призначено"}`);
+
+//=====Завдання 6. Ланцюжки методів масивів=====
+// 1. Створіть масив обʼєктів products (мінімум 8 товарів)
+
+const products = [
+    {
+        name: "Ноутбук",
+        price: 25000,
+        category: "electronics",
+        inStock: true,
+        quantity: 5
+    },
+    {
+        name: "Футболка",
+        price: 500,
+        category: "clothes",
+        inStock: true,
+        quantity: 50
+    },
+    {
+        name: "Навушники",
+        price: 2500,
+        category: "electronics",
+        inStock: true,
+        quantity: 20
+    },
+    {
+        name: "Клавіатура",
+        price: 3000,
+        category: "electronics",
+        inStock: false,
+        quantity: 0
+    },
+    {
+        name: "Джинси",
+        price: 1500,
+        category: "clothes",
+        inStock: true,
+        quantity: 30
+    },
+    {
+        name: "Термоc",
+        price: 2500,
+        category: "kitchen",
+        inStock: true,
+        quantity: 10
+    },
+    {
+        name: "Колонки",
+        price: 2000,
+        category: "electronics",
+        inStock: true,
+        quantity: 7
+    },
+    {
+        name: "Блендер",
+        price: 4000,
+        category: "kitchen",
+        inStock: false,
+        quantity: 0
+    },
+];
+
+console.log(`Оригінальний масив = ${JSON.stringify(products)}`);
+
+// 2. Використовуючи ланцюжок filter → map → reduce , обчисліть загальну вартість (price * quantity) усіх товарів, що є в наявності ( inStock: true ).
+
+function checkInStock(product) {
+    return product.inStock
+}
+
+function calculatePrice(product) {
+    return product.price * product.quantity;
+}
+
+function sumPrices(total, currentPrice) {
+    return total + currentPrice;
+}
+
+const totalPrice = products
+  .filter(checkInStock)
+  .map(calculatePrice)
+  .reduce(sumPrices, 0);
+
+console.log(`Загальна вартість товарів у наявності = ${totalPrice}`)
+
+// 3. Отримайте масив назв товарів категорії "electronics" , відсортованих за ціною від найдешевшого до найдорожчого (ланцюжок filter → sort → map ).
+
+function checkCategory(product) {
+    return product.category === "electronics";
+}
+
+const electronicsList = products
+    .filter(checkCategory)
+    .sort()
+    .map(product => {return product.name})
+    .reverse();
+
+console.log(`Список назв товарів категорії "electronics" , відсортованих за
+ціною від найдешевшого до найдорожчого = ${electronicsList}`);
+
+// 4. Створіть обʼєкт, де ключами є назви категорій, а значеннями — кількість товарів у кожній категорії. Використайте reduce .
+
+function addQuanitites(quantities, product) {
+    const category = product.category;
+    const quantity = product.quantity;
+    
+    if (!quantities[category]) {
+        quantities[category] = 0;
+    }
+    quantities[category] = quantities[category] + quantity;
+
+    return quantities
+}
+
+const categoryQuantities = products.reduce(addQuanitites, {});
+
+console.log(`Об'єкт з кількістю товарів у кожній категорії = ${JSON.stringify(categoryQuantities)}`);
+
+// 5. Відсортуйте масив студентів (з Завдання 3) за оцінкою від найвищої до найнижчої. Потім відсортуйте за імʼям в алфавітному порядку. Покажіть обидва результати (використовуйте spread для створення копій перед сортуванням).
+
+const sortedByGrade = [...students];
+sortedByGrade.sort((a, b) => b.grade - a.grade);
+console.log(`Масив students відсортований за оцінкою = ${JSON.stringify(sortedByGrade)}`);
+
+const sortedByName = [...students];
+sortedByName.sort((a, b) => a.name.localeCompare(b.name));
+console.log(`Масив students відсортований в алфавітному порядку = ${JSON.stringify(sortedByName)}`);
