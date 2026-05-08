@@ -276,3 +276,80 @@ function calculateAverage(average, student) {
 
 const averageGrade = students.reduce(calculateAverage, 0);
 console.log(`Середня оцінка = ${averageGrade}`);
+
+//=====Завдання 4. Функції=====
+// 1. Напишіть одну й ту саму функцію (наприклад, обчислення площі прямокутника)трьома способами: Function Declaration, Function Expression, Arrow Function
+
+function rectangleAreaDeclaration(a, b) {
+    return a * b;
+}
+
+rectangleAreaExpression = function(a, b) {
+    return a * b;
+}
+
+rectangleAreaArrow = (a, b) => {
+    return a * b;
+}
+
+console.log(`Результат виконання функції заданої способом Function Declaration з операндами 2, 4 = ${rectangleAreaDeclaration(2, 4)}`);
+console.log(`Результат виконання функції заданої способом Function Expression з операндами 2, 4 = ${rectangleAreaExpression(2, 4)}`);
+console.log(`Результат виконання функції заданої способом Arrow Function з операндами 2, 4 = ${rectangleAreaArrow(2, 4)}`);
+
+// 2. Створіть функцію-замикання createCounter() , яка повертає обʼєкт з методами increment() , decrement() та getValue()
+
+function createCounter() {
+    value = 0;
+
+    const increment = () => {
+        value++;
+    }
+
+    const decrement = () => {
+        value--;
+    }
+
+    const getValue = () => {
+        return value;
+    }
+
+    return {increment, decrement, getValue};
+}
+
+const counter = createCounter();
+counter.increment();
+counter.increment();
+counter.decrement();
+console.log(`Значення counter.getValue() = ${counter.getValue()}`);
+
+// 3. Напишіть функцію з параметрами за замовчуванням
+
+function createUser(name, role = "student", isActive = true) {
+    return {name, role, isActive};
+}
+
+console.log(`Результат виконання функції createUser з параметрами Василь = ${JSON.stringify(createUser("Василь"))}`);
+console.log(`Результат виконання функції createUser з параметрами Євген, студент, false = ${JSON.stringify(createUser("Євген", "студент", false))}`);
+
+// 4. Напишіть функцію з rest-параметрами, яка приймає довільну кількість чисел і повертає їх суму
+
+const sum = (...numbers) => {
+    let total = 0;
+    for (const number of numbers) {
+        total += number;
+    }
+
+    return total;
+};
+
+console.log(`Результат виконання функції sum з параметрами 1, 2, 3 = ${sum(1, 2, 3)}`);
+console.log(`Результат виконання функції sum з параметрами 10, 20 = ${sum(10, 20)}`);
+
+// 5. Напишіть функцію, яка використовує деструктуризацію в параметрах
+
+function averageOfThree([a, b, c]) {
+    return (a + b + c) / 3;
+}
+
+const arrayOfThreeNumbers = [1, 2, 3];
+console.log(`Результат виконання функції averageOfThree з параметрами ${arrayOfThreeNumbers} = ${averageOfThree(arrayOfThreeNumbers)}`);
