@@ -353,3 +353,73 @@ function averageOfThree([a, b, c]) {
 
 const arrayOfThreeNumbers = [1, 2, 3];
 console.log(`Результат виконання функції averageOfThree з параметрами ${arrayOfThreeNumbers} = ${averageOfThree(arrayOfThreeNumbers)}`);
+
+//=====Завдання 5. Обʼєкти=====
+// 1. Створіть обʼєкт studentProfile з такими властивостями:
+// firstName , lastName (рядки)
+// age (число)
+// university (рядок)
+// grades (обʼєкт із предметами та оцінками, наприклад:
+// { math: 85, physics: 92 } )
+// isActive (boolean)
+// Метод getFullName() , що повертає повне імʼя
+// Метод getAverageGrade() , що обчислює середню оцінку з усіх предметів
+
+const studentProfile = {
+    firstName: "Василь",
+    lastName: "Петренко",
+    age: 19,
+    university: "КПІ",
+    grades: {
+        math: 85, 
+        physics: 92,
+        chemistry: 90,
+        philosophy: 95
+    },
+    isActive: true,
+    gerFullName: () => {
+        return this.firstName + " " + this.lastName;
+    },
+    getAverageGrade: () => {
+        let average = 0;
+        const gradesList = this.grads.values();
+        for (const grade of gradesList) {
+            average += grade / gradesList.length;
+        }
+
+        return average;
+    }
+};
+
+console.log(`Доступ до властивостей об'єкту studentProfile з точковою нотацією = ${studentProfile.lastName}`);
+console.log(`Доступ до властивостей об'єкту studentProfile з точковою нотацією = ${studentProfile["lastName"]}`);
+
+console.log("Демонстрація дитамічного ключа, вивід значень кожної другої властивості");
+const keys = Object.keys(studentProfile);
+for (let i = 0; i < keys.length; i+=2) {
+    console.log(studentProfile[keys[i]]);
+}
+
+// 3. Виконайте ітерацію за допомогою Object.keys() , Object.values() та Object.entries() . Виведіть результати.
+
+console.log("Виконання ітерації за допомогою Object.keys()")
+for (const key of keys) {
+    console.log(key);
+}
+
+console.log("Виконання ітерації за допомогою Object.entries()")
+const entries = Object.entries(studentProfile);
+for (const entry of entries) {
+    console.log(entry);
+}
+
+// 4. Створіть копію обʼєкта за допомогою spread-оператора ( ... ) та змініть у копії одне поле. Переконайтеся, що оригінал не змінився.
+
+const studentProfileCopy  = {...studentProfile};
+studentProfileCopy.firstName = "Валерій";
+console.log(`Оригінальний об'єкт = ${JSON.stringify(studentProfile)}`);
+console.log(`Змінена копія об'єкту = ${JSON.stringify(studentProfileCopy)}`);
+
+// Продемонструйте optional chaining ( ?. )
+
+console.log(`Демонстрація доступу до неіснуючої властивості з допомогою optional chaining studentProfile.specialty?.number = ${studentProfile.specialty?.number ?? "Не призначено"}`);
