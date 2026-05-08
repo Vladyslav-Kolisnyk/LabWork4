@@ -91,3 +91,95 @@ console.log(`null === undefined = ${null === undefined}`);
 
 console.log(`false == "" = ${false == ""}`);
 console.log(`false === "" = ${false === ""}`);
+
+//=====Завдання 2. Умови та логіка=====
+// 1. Створіть функцію getGrade(score) , яка приймає бал від 0 до 100 і повертаєоцінку за шкалою
+
+function getGrade(score) {
+    if (typeof(score) !== "number") {
+        return "невалідний бал";
+    }
+
+    if (score >= 0 && score <= 59) {
+        return "незадовільно";
+    } else if (score >= 60 && score <= 74) {
+        return "задовільно";
+    } else if (score >= 75 && score <= 89) {
+        return "добре";
+    } else if (score >= 90 && score <= 100) {
+        return "відмінно";
+    } else {
+        return "невалідний бал";
+    }
+}
+
+console.log(`Результат виконання функції getGrade з аргументом 30 = ${getGrade(30)}`);
+console.log(`Результат виконання функції getGrade з аргументом 65 = ${getGrade(65)}`);
+console.log(`Результат виконання функції getGrade з аргументом 79 = ${getGrade(79)}`);
+console.log(`Результат виконання функції getGrade з аргументом 95 = ${getGrade(95)}`);
+console.log(`Результат виконання функції getGrade з аргументом 999 = ${getGrade(999)}`);
+console.log(`Результат виконання функції getGrade з аргументом "вісімдесят" = ${getGrade("вісімдесят")}`);
+
+// 2. Напишіть функцію getSeasonUA(month) , яка приймає номер місяця (1–12) і повертає назву пори року українською. Використайте оператор switch .
+
+function getSeasonUA(month) {
+    let result;
+    
+    switch (month) {
+        case 1:
+            result = "Зима";
+            break;
+        case 2:
+            result = "Зима";
+            break;
+        case 3:
+            result = "Весна";
+            break;
+        case 4:
+            result = "Весна";
+            break;
+        case 5:
+            result = "Весна";
+            break;
+        case 6:
+            result = "Літо";
+            break;
+        case 7:
+            result = "Літо";
+            break;
+        case 8:
+            result = "Літо";
+            break;
+        case 9:
+            result = "Осінь";
+            break;
+        case 10:
+            result = "Осінь";
+            break;
+        case 11:
+            result = "Осінь";
+            break;
+        case 12:
+            result = "Зима";
+            break;
+        default:
+            result = "Невалідний номер місяця";
+    }
+
+    return result;
+}
+
+console.log(`Результат виконання функції getSeasonUA з аргументом 1 = ${getSeasonUA(1)}`);
+console.log(`Результат виконання функції getSeasonUA з аргументом 3 = ${getSeasonUA(3)}`);
+console.log(`Результат виконання функції getSeasonUA з аргументом 6 = ${getSeasonUA(6)}`);
+console.log(`Результат виконання функції getSeasonUA з аргументом 9 = ${getSeasonUA(9)}`);
+console.log(`Результат виконання функції getSeasonUA з аргументом -1 = ${getSeasonUA(-1)}`);
+
+// 3. Перепишіть просту умовну перевірку за допомогою тернарного оператора
+
+function isPositive(num) {
+    return num >= 0 ? true : false
+}
+
+console.log(`Результат виконання функції isPositive з аргументом 1 = ${isPositive(1)}`);
+console.log(`Результат виконання функції isPositive з аргументом -1 = ${isPositive(-1)}`);
